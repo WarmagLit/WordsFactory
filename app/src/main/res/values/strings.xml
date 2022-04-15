@@ -18,4 +18,13 @@
     <string name="dictionary">Dictionary</string>
     <string name="training">Training</string>
     <string name="video">Video</string>
+    <string name="word">Word</string>
+    <string name="_word_">[word]</string>
+    <string name="part_of_speech">Part of Speech:</string>
+    <string name="part">Part</string>
+    <string name="meanings">Meanings:</string>
+    <string name="definition">Definition</string>
+    <string name="example">Example</string>
+    <string name="add_to_dictionary">Add to Dictionary</string>
+    <string name="create_your_account">Create your account</string>
 </resources>
