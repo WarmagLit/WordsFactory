@@ -1,12 +1,15 @@
 package com.tsu.wordsfactory.utils
 
+import android.app.DownloadManager
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
+import android.net.Uri
 import android.util.Log
+import androidx.core.net.toUri
+import java.io.File
 
-class NetworkUtils(private val context: Context) {
+class NetworkUtils(val context: Context) {
     fun isOnline(): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -25,5 +28,15 @@ class NetworkUtils(private val context: Context) {
             }
         }
         return false
+    }
+
+    fun getDownloadManager(): DownloadManager {
+        return context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+    }
+
+    fun getDir(): Uri {
+        val file = File.createTempFile("audio", ".mp3")
+        //return Uri.fromFile(file)
+        return context.getExternalFilesDir(null)!!.toUri()
     }
 }

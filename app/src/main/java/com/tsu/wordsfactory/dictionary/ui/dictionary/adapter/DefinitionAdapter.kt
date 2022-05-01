@@ -1,4 +1,4 @@
-package com.tsu.wordsfactory.dictionary.ui.dictionary
+package com.tsu.wordsfactory.dictionary.ui.dictionary.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tsu.wordsfactory.R
+import com.tsu.wordsfactory.databinding.ItemDefinitionBinding
 import com.tsu.wordsfactory.repository.model.Definition
 
 class DefinitionAdapter : RecyclerView.Adapter<DefinitionHolder>() {
@@ -19,8 +20,8 @@ class DefinitionAdapter : RecyclerView.Adapter<DefinitionHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefinitionHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_definition, parent, false)
-        return DefinitionHolder(view)
+        val itemBinding = ItemDefinitionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DefinitionHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: DefinitionHolder, position: Int) {
@@ -31,16 +32,11 @@ class DefinitionAdapter : RecyclerView.Adapter<DefinitionHolder>() {
     override fun getItemCount(): Int = definitions.size
 }
 
-class DefinitionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    private val textDefinition: TextView = itemView.findViewById(R.id.textDefinition)
-    private val textExample: TextView = itemView.findViewById(R.id.textExample)
-    //private val recyclerPartMeaning: RecyclerView = itemView.findViewById(R.id.recyclerPartMeaning)
-
+class DefinitionHolder(private val itemBinding: ItemDefinitionBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(definition: Definition) {
-        textDefinition.text = definition.definition
-        textExample.text = definition.example
+        itemBinding.textDefinition.text = definition.definition
+        itemBinding.textExample.text = definition.example
     }
 
 }

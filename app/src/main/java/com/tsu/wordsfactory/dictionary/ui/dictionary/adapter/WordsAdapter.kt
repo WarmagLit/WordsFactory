@@ -1,15 +1,21 @@
-package com.tsu.wordsfactory.dictionary.ui.dictionary
+package com.tsu.wordsfactory.dictionary.ui.dictionary.adapter
 
 import android.annotation.SuppressLint
+import android.media.RingtoneManager
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tsu.wordsfactory.R
+import com.tsu.wordsfactory.databinding.ItemMeaningBinding
+import com.tsu.wordsfactory.databinding.ItemWordBinding
 import com.tsu.wordsfactory.repository.model.Word
+import com.tsu.wordsfactory.utils.NetworkUtils
 
-class WordsAdapter : RecyclerView.Adapter<WordHolder>() {
+class WordsAdapter(private val networkUtils: NetworkUtils) : RecyclerView.Adapter<WordHolder>() {
 
     var words: List<Word> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -19,8 +25,8 @@ class WordsAdapter : RecyclerView.Adapter<WordHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_word, parent, false)
-        return WordHolder(view)
+        val itemBinding = ItemWordBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return WordHolder(itemBinding, networkUtils)
     }
 
     override fun onBindViewHolder(holder: WordHolder, position: Int) {
@@ -31,23 +37,26 @@ class WordsAdapter : RecyclerView.Adapter<WordHolder>() {
     override fun getItemCount(): Int = words.size
 }
 
-class WordHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class WordHolder(private val itemBinding: ItemWordBinding, private val networkUtils: NetworkUtils) : RecyclerView.ViewHolder(itemBinding.root) {
 
     private val adapter = MeaningAdapter()
 
-    private val wordText: TextView = itemView.findViewById(R.id.textWord)
-    private val phoneticText: TextView = itemView.findViewById(R.id.textPhonetic)
-    private val recyclerPartMeaning: RecyclerView = itemView.findViewById(R.id.recyclerPartMeaning)
-
     fun bind(word: Word) {
-        wordText.text = word.word
-        phoneticText.text = word.phonetic
+        itemBinding.textWord.text = word.word
+        itemBinding.textPhonetic.text = word.phonetic
+        itemBinding.recyclerPartMeaning.adapter = adapter
 
-        recyclerPartMeaning.adapter = adapter
+        itemBinding.btnPlayAudio.setOnClickListener {
+            Log.d("f", "Play")
+            val uri = word.phonetics.first().audioUri
+            Log.d("Uri", uri.toString())
+            RingtoneManager.getRingtone(networkUtils.context, word.phonetics.first().audioUri).play()
+        }
+
         bindMeaning(word)
     }
 
-    fun bindMeaning(word: Word) {
+    private fun bindMeaning(word: Word) {
         adapter.meanings = word.meanings
     }
 }

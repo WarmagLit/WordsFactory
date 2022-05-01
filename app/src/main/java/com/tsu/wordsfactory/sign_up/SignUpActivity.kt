@@ -1,14 +1,10 @@
 package com.tsu.wordsfactory.sign_up
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.os.Message
 import android.text.InputType
 import android.text.method.PasswordTransformationMethod
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.tsu.wordsfactory.R
 import com.tsu.wordsfactory.databinding.ActivitySignUpBinding
@@ -39,7 +35,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.btnSignUp.setOnClickListener {
             if (binding.textName.text.isNullOrEmpty()) {
-                basicAlert("Please enter your name")
+                basicAlert(getString(R.string.please_enter_your_name))
             } else if (binding.textEmail.text.isNullOrEmpty()) {
                 basicAlert("Please enter your E-mail")
             } else if (binding.textPassword.text.isNullOrEmpty()) {

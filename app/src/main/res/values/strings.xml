@@ -27,4 +27,6 @@
     <string name="example">Example</string>
     <string name="add_to_dictionary">Add to Dictionary</string>
     <string name="create_your_account">Create your account</string>
+    <string name="please_enter_your_name">Please enter your name</string>
+    <string name="word_saved">Word saved!</string>
 </resources>

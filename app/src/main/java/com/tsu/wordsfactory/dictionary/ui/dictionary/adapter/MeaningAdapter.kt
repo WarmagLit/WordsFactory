@@ -1,4 +1,4 @@
-package com.tsu.wordsfactory.dictionary.ui.dictionary
+package com.tsu.wordsfactory.dictionary.ui.dictionary.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tsu.wordsfactory.R
+import com.tsu.wordsfactory.databinding.ItemDefinitionBinding
+import com.tsu.wordsfactory.databinding.ItemMeaningBinding
 import com.tsu.wordsfactory.repository.model.Meaning
 
 class MeaningAdapter : RecyclerView.Adapter<MeaningHolder>() {
@@ -19,8 +21,8 @@ class MeaningAdapter : RecyclerView.Adapter<MeaningHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeaningHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_meaning, parent, false)
-        return MeaningHolder(view)
+        val itemBinding = ItemMeaningBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MeaningHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: MeaningHolder, position: Int) {
@@ -31,16 +33,13 @@ class MeaningAdapter : RecyclerView.Adapter<MeaningHolder>() {
     override fun getItemCount(): Int = meanings.size
 }
 
-class MeaningHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class MeaningHolder(private val itemBinding: ItemMeaningBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
     private val adapter = DefinitionAdapter()
 
-    private val speechPartText: TextView = itemView.findViewById(R.id.textPart)
-    private val recyclerMeanings: RecyclerView = itemView.findViewById(R.id.recyclerMeanings)
-
     fun bind(meaning: Meaning) {
-        recyclerMeanings.adapter = adapter
-        speechPartText.text = meaning.partOfSpeech
+        itemBinding.recyclerMeanings.adapter = adapter
+        itemBinding.textPart.text = meaning.partOfSpeech
         bindDefinitions(meaning)
     }
 

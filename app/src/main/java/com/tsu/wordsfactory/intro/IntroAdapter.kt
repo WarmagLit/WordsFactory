@@ -13,7 +13,6 @@ class IntroAdapter(fragment: FragmentActivity, private var headerList: List<Int>
 
     override fun createFragment(position: Int): Fragment {
         val fragment = IntroFragment()
-        Log.d("Tag", headerList.toString())
         fragment.arguments = Bundle().apply {
             putInt(ARG_OBJECT, headerList[position])
             putInt(ARG_OBJECT2, imgList[position])

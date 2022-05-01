@@ -11,7 +11,11 @@ import com.tsu.wordsfactory.repository.model.Meaning
 import com.tsu.wordsfactory.repository.model.Word
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.Protocol
 import retrofit2.Response
+import java.io.FileOutputStream
+import java.net.URL
+import java.nio.channels.Channels
 import java.util.*
 
 class WordsRepositoryImpl(private val wordsDatasource: WordsDatasource, private val wordsDao: WordsDao) : WordsRepository {
@@ -45,6 +49,9 @@ class WordsRepositoryImpl(private val wordsDatasource: WordsDatasource, private 
         val response: Response<List<Word>> = wordsDatasource.getWord(word)
 
         if (response.isSuccessful && response.body() != null) {
+            for(word in response.body()!!) {
+                val url: String = word.phonetics[0].audio
+            }
             return response.body()!!
         }
         return emptyList()

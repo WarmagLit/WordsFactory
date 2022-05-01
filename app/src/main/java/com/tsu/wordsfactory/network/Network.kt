@@ -1,10 +1,8 @@
-package com.tsu.wordsfactory.app
+package com.tsu.wordsfactory.network
 
-import android.app.Application
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.tsu.midtermexam3.data.Database
-import com.tsu.midtermexam3.data.NotesRepository
 import com.tsu.wordsfactory.repository.WordsDatasourceImpl
 import com.tsu.wordsfactory.repository.WordsRepository
 import com.tsu.wordsfactory.repository.WordsRepositoryImpl
@@ -14,10 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
-class WordsApplication: Application() {
-    private companion object {
-        var BASE_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
-    }
+object Network {
+
+    var BASE_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 
     lateinit var wordsRepository: WordsRepository
 
