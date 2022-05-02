@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Mobile/Work/WordsApp/app/src/main/res/drawable/btn_standard.xml" value="0.1565" />
+        <entry key="..\:/Mobile/Work/WordsApp/app/src/main/res/layout/item_definition.xml" value="0.1" />
+        <entry key="..\:/Mobile/Work/WordsApp/app/src/main/res/layout/item_meaning.xml" value="0.1" />
+        <entry key="..\:/Mobile/Work/WordsApp/app/src/main/res/layout/item_word.xml" value="0.1" />
         <entry key="..\:/TSU/Mobile/WordsFactory/app/src/main/res/drawable/bottom_nav_bar_background.xml" value="0.5" />
         <entry key="..\:/TSU/Mobile/WordsFactory/app/src/main/res/drawable/bottom_nav_bar_icon_selector.xml" value="0.383" />
         <entry key="..\:/TSU/Mobile/WordsFactory/app/src/main/res/drawable/btn_standard.xml" value="0.5" />

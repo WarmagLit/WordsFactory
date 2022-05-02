@@ -2,12 +2,14 @@ package com.tsu.wordsfactory.utils
 
 import android.app.DownloadManager
 import android.content.Context
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.util.Log
-import androidx.core.net.toUri
 import java.io.File
+import java.io.IOException
 
 class NetworkUtils(val context: Context) {
     fun isOnline(): Boolean {
@@ -34,9 +36,31 @@ class NetworkUtils(val context: Context) {
         return context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
     }
 
+    fun playContentUri(uri: Uri) {
+        var mMediaPlayer: MediaPlayer? = null
+        mMediaPlayer = try {
+            MediaPlayer().apply {
+                setDataSource(context, uri)
+                setAudioAttributes(AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+                )
+                prepare()
+                start()
+            }
+        } catch (exception: IOException) {
+            Log.d("Tag","Crash player")
+            mMediaPlayer?.release()
+            null
+        }
+    }
+
     fun getDir(): Uri {
         val file = File.createTempFile("audio", ".mp3")
-        //return Uri.fromFile(file)
-        return context.getExternalFilesDir(null)!!.toUri()
+
+        //val file = File(context.cacheDir, "audio.mp3")
+        return Uri.fromFile(file)
+        //return context.getExternalFilesDir(null)!!.toUri()
     }
 }
