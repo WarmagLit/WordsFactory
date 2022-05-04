@@ -37,8 +37,11 @@ class MeaningHolder(private val itemBinding: ItemMeaningBinding) : RecyclerView.
 
     private val adapter = DefinitionAdapter()
 
-    fun bind(meaning: Meaning) {
+    init {
         itemBinding.recyclerMeanings.adapter = adapter
+    }
+
+    fun bind(meaning: Meaning) {
         itemBinding.textPart.text = meaning.partOfSpeech
         bindDefinitions(meaning)
     }

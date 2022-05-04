@@ -47,10 +47,13 @@ class WordHolder(private val itemBinding: ItemWordBinding, private val networkUt
 
     private val adapter = MeaningAdapter()
 
+    init {
+        itemBinding.recyclerPartMeaning.adapter = adapter
+    }
+
     fun bind(word: Word) {
         itemBinding.textWord.text = word.word
         itemBinding.textPhonetic.text = word.phonetic
-        itemBinding.recyclerPartMeaning.adapter = adapter
 
         itemBinding.btnPlayAudio.setOnClickListener {
             if (word.phonetics.isEmpty()) return@setOnClickListener
