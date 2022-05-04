@@ -28,5 +28,9 @@
     <string name="add_to_dictionary">Add to Dictionary</string>
     <string name="create_your_account">Create your account</string>
     <string name="please_enter_your_name">Please enter your name</string>
+    <string name="please_enter_your_e_mail">Please enter your e-mail</string>
+    <string name="please_enter_your_password">Please enter your password</string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
     <string name="word_saved">Word saved!</string>
 </resources>

@@ -7,7 +7,7 @@ import com.tsu.wordsfactory.repository.data.DefinitionModel
 import com.tsu.wordsfactory.repository.data.MeaningModel
 
 
-@androidx.room.Database(entities = [WordModel::class, MeaningModel::class, DefinitionModel::class], version = 3, exportSchema = false)
+@androidx.room.Database(entities = [WordModel::class, MeaningModel::class, DefinitionModel::class], version = 1, exportSchema = false)
 
 abstract class Database: RoomDatabase() {
     abstract fun wordsDao(): WordsDao

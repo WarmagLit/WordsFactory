@@ -45,6 +45,12 @@ class DictionaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
+        initListeners()
+        observeViewModel()
+    }
+
+    private fun initView() {
         val cxt: Context = requireContext()
         Network.createRepository(cxt)
 
@@ -55,7 +61,9 @@ class DictionaryFragment : Fragment() {
 
         val viewModelFactory = WordsViewModelFactory(networkUtils)
         viewModel = ViewModelProvider(this, viewModelFactory)[ListViewModel::class.java]
+    }
 
+    private fun initListeners() {
         binding.textInputSearch.setEndIconOnClickListener {
             val word = binding.textSearch.text.toString()
             viewModel.loadWord(word)
@@ -63,17 +71,19 @@ class DictionaryFragment : Fragment() {
 
         binding.btnAddWord.setOnClickListener {
             viewModel.saveWord()
-            Toast.makeText(cxt,getString(R.string.word_saved), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.word_saved), Toast.LENGTH_SHORT).show()
         }
+    }
 
+    private fun observeViewModel() {
         viewModel.words.observe(viewLifecycleOwner, ::bindWord)
-
     }
 
 
     private fun bindWord(words: List<Word>) {
         adapter.words = words
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

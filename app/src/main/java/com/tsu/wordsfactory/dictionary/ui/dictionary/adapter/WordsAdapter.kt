@@ -19,6 +19,7 @@ import com.tsu.wordsfactory.databinding.ItemWordBinding
 import com.tsu.wordsfactory.repository.model.Word
 import com.tsu.wordsfactory.utils.NetworkUtils
 import kotlinx.coroutines.NonCancellable.start
+import timber.log.Timber
 
 class WordsAdapter(private val networkUtils: NetworkUtils) : RecyclerView.Adapter<WordHolder>() {
 
@@ -52,14 +53,13 @@ class WordHolder(private val itemBinding: ItemWordBinding, private val networkUt
         itemBinding.recyclerPartMeaning.adapter = adapter
 
         itemBinding.btnPlayAudio.setOnClickListener {
-            Log.d("f", "Play")
+            if (word.phonetics.isEmpty()) return@setOnClickListener
+
             val uri = word.phonetics.first().audioUri
-            Log.d("Uri", uri.toString())
             if (uri != null)
                 networkUtils.playContentUri(uri)
             else
-                Log.d("Tag", "Empty Uri!!!")
-            //RingtoneManager.getRingtone(cxt, word.phonetics.first().audioUri).play()
+                Timber.d("Empty Uri!!!")
         }
 
         bindMeaning(word)

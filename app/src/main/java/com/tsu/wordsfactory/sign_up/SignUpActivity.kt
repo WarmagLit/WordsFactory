@@ -37,9 +37,9 @@ class SignUpActivity : AppCompatActivity() {
             if (binding.textName.text.isNullOrEmpty()) {
                 basicAlert(getString(R.string.please_enter_your_name))
             } else if (binding.textEmail.text.isNullOrEmpty()) {
-                basicAlert("Please enter your E-mail")
+                basicAlert(getString(R.string.please_enter_your_e_mail))
             } else if (binding.textPassword.text.isNullOrEmpty()) {
-                basicAlert("Please enter your Password")
+                basicAlert(getString(R.string.please_enter_your_password))
             } else {
                     val intent = Intent(this, DictionaryActivity::class.java)
                     startActivity(intent)
@@ -54,9 +54,9 @@ class SignUpActivity : AppCompatActivity() {
 
         with(builder)
         {
-            setTitle("Error")
+            setTitle(getString(R.string.error))
             setMessage(message)
-            setPositiveButton("OK") { _, _ ->
+            setPositiveButton(getString(R.string.ok)) { _, _ ->
                 // User clicked OK button
             }
             show()

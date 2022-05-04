@@ -32,10 +32,6 @@ class NetworkUtils(val context: Context) {
         return false
     }
 
-    fun getDownloadManager(): DownloadManager {
-        return context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-    }
-
     fun playContentUri(uri: Uri) {
         var mMediaPlayer: MediaPlayer? = null
         mMediaPlayer = try {
@@ -54,13 +50,5 @@ class NetworkUtils(val context: Context) {
             mMediaPlayer?.release()
             null
         }
-    }
-
-    fun getDir(): Uri {
-        val file = File.createTempFile("audio", ".mp3")
-
-        //val file = File(context.cacheDir, "audio.mp3")
-        return Uri.fromFile(file)
-        //return context.getExternalFilesDir(null)!!.toUri()
     }
 }

@@ -8,7 +8,7 @@
     tools:context=".sign_up.SignUpActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="34dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textHeader"
         style="@style/Heading_H4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,10 +29,10 @@
         android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageSignUp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textDescription"
         style="@style/Paragraph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:text="@string/create_your_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textHeader" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputName"

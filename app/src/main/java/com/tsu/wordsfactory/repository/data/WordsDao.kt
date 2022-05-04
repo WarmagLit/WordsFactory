@@ -14,10 +14,7 @@ interface WordsDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addWord(word: WordModel)
-    /*
-    @Query("DELETE FROM word WHERE text = :text AND time = :time ")
-    suspend fun deleteWord(text: String, time: String)
-    */
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addMeaning(meaningModel: MeaningModel)
 
