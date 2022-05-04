@@ -1,3 +1,13 @@
+buildscript {
+    ext.retrofit_version = '2.9.0'
+    ext.rxAndroidVersion = '2.1.1'
+    ext.rxKotlin = '2.1.0'
+    ext.lifecycle_version = '2.3.0'
+    ext.okHttp_version = '4.8.0'
+
+}
+
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'com.android.application' version '7.1.2' apply false

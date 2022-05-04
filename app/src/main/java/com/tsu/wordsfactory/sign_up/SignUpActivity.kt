@@ -1,5 +1,6 @@
 package com.tsu.wordsfactory.sign_up
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -21,6 +22,10 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initListeners()
+    }
+
+    private fun initListeners() {
         binding.textInputPassword.setEndIconOnClickListener {
             isInputPassVisible = !isInputPassVisible
             if (isInputPassVisible) {
@@ -33,8 +38,30 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.btnSignUp.setOnClickListener {
-            val intent = Intent(this, DictionaryActivity::class.java)
-            startActivity(intent)
+            if (binding.textName.text.isNullOrEmpty()) {
+                basicAlert(getString(R.string.please_enter_your_name))
+            } else if (binding.textEmail.text.isNullOrEmpty()) {
+                basicAlert(getString(R.string.please_enter_your_e_mail))
+            } else if (binding.textPassword.text.isNullOrEmpty()) {
+                basicAlert(getString(R.string.please_enter_your_password))
+            } else {
+                val intent = Intent(this, DictionaryActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun basicAlert(message: String){
+        val builder = AlertDialog.Builder(this)
+
+        with(builder)
+        {
+            setTitle(getString(R.string.error))
+            setMessage(message)
+            setPositiveButton(getString(R.string.ok)) { _, _ ->
+                // User clicked OK button
+            }
+            show()
         }
 
     }

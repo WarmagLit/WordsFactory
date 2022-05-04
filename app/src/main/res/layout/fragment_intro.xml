@@ -7,15 +7,15 @@
     tools:context=".intro.IntroFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageIntro"
         android:layout_width="wrap_content"
         android:layout_height="264dp"
         android:layout_margin="16dp"
         android:layout_marginTop="84dp"
-        android:src="@drawable/intro1" />
+        android:src="@drawable/img_intro" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,7 +23,7 @@
         style="@style/Heading_H4" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
