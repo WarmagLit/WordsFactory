@@ -22,6 +22,10 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initListeners()
+    }
+
+    private fun initListeners() {
         binding.textInputPassword.setEndIconOnClickListener {
             isInputPassVisible = !isInputPassVisible
             if (isInputPassVisible) {
@@ -41,12 +45,10 @@ class SignUpActivity : AppCompatActivity() {
             } else if (binding.textPassword.text.isNullOrEmpty()) {
                 basicAlert(getString(R.string.please_enter_your_password))
             } else {
-                    val intent = Intent(this, DictionaryActivity::class.java)
-                    startActivity(intent)
+                val intent = Intent(this, DictionaryActivity::class.java)
+                startActivity(intent)
             }
-
         }
-
     }
 
     private fun basicAlert(message: String){
