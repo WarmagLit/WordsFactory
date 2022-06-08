@@ -32,6 +32,10 @@ class VideoFragment : Fragment() {
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        binding.webView.webViewClient = VideoWebViewClient()
+        binding.webView.loadUrl("https://learnenglish.britishcouncil.org/general-english/video-zone")
+
         return root
     }
 
